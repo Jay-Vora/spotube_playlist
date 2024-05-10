@@ -18,9 +18,12 @@ def print_video_details(details):
 
 print_video_details(details) """
 from googleapiclient.discovery import build
+import os
+
+DEVELOPER_KEY = os.getenv("DEVELOPER_KEY", "")
 
 def search_videos(query):
-    youtube = build('youtube', 'v3', developerKey='AIzaSyCKYkRn06Dt3Qg2e1kV6gYyJQJEhIcADF4')
+    youtube = build('youtube', 'v3', developerKey=DEVELOPER_KEY)
     request = youtube.search().list(part='id', type='video', q=query, maxResults=5)
     response = request.execute()
     return response
